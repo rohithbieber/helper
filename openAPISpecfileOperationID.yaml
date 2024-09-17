@@ -1,0 +1,767 @@
+openapi: 3.0.0
+info:
+  title: Example API
+  description: A sample API with 100 unique operations
+  version: 1.0.0
+paths:
+  /items:
+    get:
+      operationId: listItems
+      summary: List all items
+      responses:
+        '200':
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      operationId: createItem
+      summary: Create a new item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Item created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+
+  /items/{itemId}:
+    get:
+      operationId: getItemById
+      summary: Get an item by ID
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: An item
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+        '404':
+          description: Item not found
+    put:
+      operationId: updateItemById
+      summary: Update an item by ID
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Item updated
+        '404':
+          description: Item not found
+    delete:
+      operationId: deleteItemById
+      summary: Delete an item by ID
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Item deleted
+        '404':
+          description: Item not found
+
+  /users:
+    get:
+      operationId: listUsers
+      summary: List all users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      operationId: createUser
+      summary: Create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+
+  /users/{userId}:
+    get:
+      operationId: getUserById
+      summary: Get a user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+        '404':
+          description: User not found
+    put:
+      operationId: updateUserById
+      summary: Update a user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+      responses:
+        '200':
+          description: User updated
+        '404':
+          description: User not found
+    delete:
+      operationId: deleteUserById
+      summary: Delete a user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+
+  /products:
+    get:
+      operationId: listProducts
+      summary: List all products
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    price:
+                      type: number
+                      format: float
+    post:
+      operationId: createProduct
+      summary: Create a new product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+      responses:
+        '201':
+          description: Product created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  price:
+                    type: number
+                    format: float
+
+  /products/{productId}:
+    get:
+      operationId: getProductById
+      summary: Get a product by ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  price:
+                    type: number
+                    format: float
+        '404':
+          description: Product not found
+    put:
+      operationId: updateProductById
+      summary: Update a product by ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+      responses:
+        '200':
+          description: Product updated
+        '404':
+          description: Product not found
+    delete:
+      operationId: deleteProductById
+      summary: Delete a product by ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Product deleted
+        '404':
+          description: Product not found
+
+  # Add more endpoints similarly to reach 100 unique operations
+  /orders:
+    get:
+      operationId: listOrders
+      summary: List all orders
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    orderId:
+                      type: integer
+                    customerName:
+                      type: string
+                    totalAmount:
+                      type: number
+                      format: float
+    post:
+      operationId: createOrder
+      summary: Create a new order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerName:
+                  type: string
+                totalAmount:
+                  type: number
+                  format: float
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: integer
+                  customerName:
+                    type: string
+                  totalAmount:
+                    type: number
+                    format: float
+
+  /orders/{orderId}:
+    get:
+      operationId: getOrderById
+      summary: Get an order by ID
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: An order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: integer
+                  customerName:
+                    type: string
+                  totalAmount:
+                    type: number
+                    format: float
+        '404':
+          description: Order not found
+    put:
+      operationId: updateOrderById
+      summary: Update an order by ID
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerName:
+                  type: string
+                totalAmount:
+                  type: number
+                  format: float
+      responses:
+        '200':
+          description: Order updated
+        '404':
+          description: Order not found
+    delete:
+      operationId: deleteOrderById
+      summary: Delete an order by ID
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Order deleted
+        '404':
+          description: Order not found
+
+  /categories:
+    get:
+      operationId: listCategories
+      summary: List all categories
+      responses:
+        '200':
+          description: A list of categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    categoryId:
+                      type: integer
+                    name:
+                      type: string
+    post:
+      operationId: createCategory
+      summary: Create a new category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Category created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categoryId:
+                    type: integer
+                  name:
+                    type: string
+
+  /categories/{categoryId}:
+    get:
+      operationId: getCategoryById
+      summary: Get a category by ID
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categoryId:
+                    type: integer
+                  name:
+                    type: string
+        '404':
+          description: Category not found
+    put:
+      operationId: updateCategoryById
+      summary: Update a category by ID
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Category updated
+        '404':
+          description: Category not found
+    delete:
+      operationId: deleteCategoryById
+      summary: Delete a category by ID
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Category deleted
+        '404':
+          description: Category not found
+
+  /reviews:
+    get:
+      operationId: listReviews
+      summary: List all reviews
+      responses:
+        '200':
+          description: A list of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    reviewId:
+                      type: integer
+                    reviewerName:
+                      type: string
+                    rating:
+                      type: integer
+                      format: int32
+                    comment:
+                      type: string
+    post:
+      operationId: createReview
+      summary: Create a new review
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reviewerName:
+                  type: string
+                rating:
+                  type: integer
+                  format: int32
+                comment:
+                  type: string
+      responses:
+        '201':
+          description: Review created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reviewId:
+                    type: integer
+                  reviewerName:
+                    type: string
+                  rating:
+                    type: integer
+                    format: int32
+                  comment:
+                    type: string
+
+  /reviews/{reviewId}:
+    get:
+      operationId: getReviewById
+      summary: Get a review by ID
+      parameters:
+        - name: reviewId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A review
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reviewId:
+                    type: integer
+                  reviewerName:
+                    type: string
+                  rating:
+                    type: integer
+                    format: int32
+                  comment:
+                    type: string
+        '404':
+          description: Review not found
+    put:
+      operationId: updateReviewById
+      summary: Update a review by ID
+      parameters:
+        - name: reviewId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reviewerName:
+                  type: string
+                rating:
+                  type: integer
+                  format: int32
+                comment:
+                  type: string
+      responses:
+        '200':
+          description: Review updated
+        '404':
+          description: Review not found
+    delete:
+      operationId: deleteReviewById
+      summary: Delete a review by ID
+      parameters:
+        - name: reviewId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Review deleted
+        '404':
+          description: Review not found
+
+  /settings:
+    get:
+      operationId: getSettings
+      summary: Get settings
+      responses:
+        '200':
+          description: Application settings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  theme:
+                    type: string
+                  notifications:
+                    type: boolean
+    put:
+      operationId: updateSettings
+      summary: Update settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                theme:
+                  type: string
+                notifications:
+                  type: boolean
+      responses:
+        '200':
+          description: Settings updated
+
+  /login:
+    post:
+      operationId: login
+      summary: User login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Invalid credentials
+
+  /logout:
+    post:
+      operationId: logout
+      summary: User logout
+      responses:
+        '204':
+          description: Successful logout
+
+  /search:
+    get:
+      operationId: search
+      summary: Search for items
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
